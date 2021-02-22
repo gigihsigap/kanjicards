@@ -3,13 +3,13 @@ import CompleteCard from './CompleteCard';
 
 // let allCards = [
 //   {
-//     kanji: '1',
-//     hiragana: 'ichi',
+//     origin: '1',
+//     reading: 'ichi',
 //     translate: 'one',
 //   },
 //   {
-//     kanji: '2',
-//     hiragana: 'ni',
+//     origin: '2',
+//     reading: 'ni',
 //     translate: 'two',
 //   }
 // ]
