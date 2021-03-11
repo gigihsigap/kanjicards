@@ -1,3 +1,11 @@
+// function generateRandomNumber(x: number) {
+//   let arr = [];
+//   while(arr.length < x) { // This will generate 'x' random numbers
+//     let r = Math.floor(Math.random() * 100) + 1;
+//     if(arr.indexOf(r) === -1) arr.push(r);
+//   }
+//   return arr.join('')
+// }
 
 function shuffle(oldArray: any) {
   let array = oldArray.slice(0)
@@ -7,11 +15,6 @@ function shuffle(oldArray: any) {
   }
   console.log('New array:', array)
   return array
-}
-
-function meme(str: string) {
-  console.log('meme')
-  return str[0]
 }
 
 class Card {
@@ -54,6 +57,7 @@ class Deck {
   name: string;
   cards: Array<Card>;
   currentSession: any;
+  // id: string;
 
   constructor(cards: Array<Card>) {
     this.name = "Sample Cards"
@@ -65,19 +69,17 @@ class Deck {
       setting: 'default',
       totalCount: this.cards.length
     }
+    // this.id = `${this.name}#${generateRandomNumber(4)}`
   }
 
   addCard(cardData: CardContent) {
-    console.log('Add card:', cardData)
     let newCard = new Card(cardData)
     this.cards.push(newCard)
     return newCard
   }
 
   removeCard(i: number) {
-    console.log('Remove card...', i)
     this.cards.splice(i,1)
-    console.log('All cards:', this)
   }
 
   shuffleAllCards() {
@@ -98,8 +100,82 @@ class Deck {
     // return a card from the end and remove it from the deck
     return this.currentSession.deck.pop()
   }
+
+  changeName(name: string) {
+    this.name = name
+  }
+
+  replaceDeck(deckData: Deck) {
+    console.log('Replace deck', deckData)
+    // Changing name
+    this.changeName(deckData.name)
+    const newCards = deckData.cards
+
+    // Emptying cards in the Deck
+    this.cards = []
+
+    // Putting in all the new cards
+    newCards.forEach((card) => {
+      this.addCard(card)
+    })
+
+    // Shuffling the new deck
+    this.shuffleAllCards()
+  }
+
+  saveToLocalStorage() {
+    let deck = { name: this.name, cards: this.cards}
+    let exportedDeck = JSON.stringify(deck)
+    localStorage.setItem("kanjicards", exportedDeck)
+  }
+
+  getFromLocalStorage() {
+    const importedDeck = localStorage.getItem("kanjicards")
+    if (!importedDeck) { return }
+    console.log(importedDeck, 'imported')
+    const deck = JSON.parse(importedDeck)
+    this.replaceDeck(deck)
+    // Down testing code, no need to return anything
+    return importedDeck
+  }
+
+  getAllLocalDecks() {
+    const allDecks = localStorage.getItem("kanjidecks")
+    return (allDecks) ? JSON.parse(allDecks) : undefined 
+  }
+
+  compileAllDecks() {
+    const cards = this.cards
+    const deck = { name: this.name, cards: cards }
+
+    const JSONdata = localStorage.getItem("kanjidecks")
+    const oldDecks = JSONdata ? JSON.parse(JSONdata) : undefined
+    let newDecks
+
+    // If there's none stored yet, make a new array
+    if (oldDecks) {
+      newDecks = oldDecks.concat([deck])
+    }
+    else {
+      newDecks = [this]
+    }
+    console.log('Set item LC "kanjidecks"', newDecks)
+    localStorage.setItem("kanjidecks", JSON.stringify(newDecks))
+  }
+
+  removeFromLocalDecks(i: number) {
+    const JSONdata = localStorage.getItem("kanjidecks")
+    if (!JSONdata) { return }
+    let newDecks = JSON.parse(JSONdata)
+    newDecks.splice(i, 1)
+    localStorage.setItem("kanjidecks", JSON.stringify(newDecks))
+  }
+
+  destroyLocalDecks() {
+    localStorage.removeItem("kanjidecks")
+  }
 }
 
-const currentDeck = new Deck(sampleCards)
+const store = new Deck(sampleCards)
 
-export { currentDeck }
+export { store }

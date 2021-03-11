@@ -1,0 +1,92 @@
+[
+  { 
+    "kanji": "一人",
+    "hiragana": "ひとつ",
+    "translate": ["one person", "alone", "1 person"]
+  },
+  {
+    "kanji": "二人",
+    "hiragana": "ふたり",
+    "translate": ["two people", "pair", "2 people"]
+  },
+  {
+    "kanji": "三日",
+    "hiragana": "みっか",
+    "translate": ["three days", "3 days"]
+  },
+  {
+    "kanji": "百万円",
+    "hiragana": "ひゃくまんえん",
+    "translate": ["one million yen", "1 million yen"]
+  },
+  {
+    "kanji": "千万円",
+    "hiragana": "せんまんえん",
+    "translate": ["ten million yen", "10 million yen"]
+  },
+  {
+    "kanji": "百一",
+    "hiragana": "ひゃくいち",
+    "translate": ["101"]
+  },
+  {
+    "kanji": "百四十五",
+    "hiragana": "ひゃくよんじゅうご",
+    "translate": ["145"]
+  },
+  {
+    "kanji": "百九十九",
+    "hiragana": "ひゃくきゅうじゅうきゅう",
+    "translate": ["199"]
+  },
+  {
+    "kanji": "",
+    "hiragana": "",
+    "translate": [""]
+  },
+  {
+    "kanji": "",
+    "hiragana": "",
+    "translate": [""]
+  },
+  {
+    "kanji": "",
+    "hiragana": "",
+    "translate": [""]
+  },
+  {
+    "kanji": "",
+    "hiragana": "",
+    "translate": [""]
+  },
+  {
+    "kanji": "",
+    "hiragana": "",
+    "translate": [""]
+  },
+  {
+    "kanji": "",
+    "hiragana": "",
+    "translate": [""]
+  },
+  {
+    "kanji": "",
+    "hiragana": "",
+    "translate": [""]
+  },
+  {
+    "kanji": "",
+    "hiragana": "",
+    "translate": [""]
+  },
+  {
+    "kanji": "",
+    "hiragana": "",
+    "translate": [""]
+  },
+  {
+    "kanji": "",
+    "hiragana": "",
+    "translate": [""]
+  }
+]

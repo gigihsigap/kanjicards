@@ -2,38 +2,33 @@ import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-const store = require('../store.tsx');
+const {store} = require('../store.tsx');
 
-export default () => {
+export default (props: any) => {
   const [answer, setAnswer] = useState('')
   const [useCard, setUseCard] = useState({
     kanji: '',
     hiragana: '',
-    translate: [],
+    translate: [''],
   })
   const [state, setState] = useState({
     outOfCards: false,
     notificationMessage: '',
-    sessionSetting: 'default',
+    mode: props.location.mode,
   })
   const [score, setScore] = useState(0)
 
 
   useEffect(() => {
-    console.log('Use Effect jalan')
+    console.log('Use Effect jalan', props)
 
-    // store.currentDeck.getFromLocalStorage()
+    // store.getFromLocalStorage()
 
-    store.currentDeck.shuffleAllCards()
-    const firstcard = store.currentDeck.drawCard()
+    store.shuffleAllCards()
+    const firstcard = store.drawCard()
 
-    const obj = {
-      outOfCards: false,
-      notificationMessage: '',
-      sessionSetting: 'kanji', // bisa diganti
-    }
+    
     console.log('First card', firstcard)
-    setState(obj)
     setUseCard(firstcard)
   }, [])
 
@@ -49,32 +44,30 @@ export default () => {
 
   const checkAnswer = (e: any) => {
     e.preventDefault()
-    // const token = localStorage.owner_token
-    // console.log("Card infos are:", useCard)
-    console.log("Your answer:", answer)
     if (!answer) return
 
     let correctAnswer = ''
+    let translations = ['']
 
-    // Belum bikin kasus ketika mengecek translate (terutama cek answer)
-    switch (state.sessionSetting) {
+    switch (state.mode) {
       case 'kanji':
         correctAnswer = useCard.kanji
         break
       case 'hiragana':
         correctAnswer = useCard.hiragana
         break
+      case 'translation':
+        translations = useCard.translate
+        break
       default: break
     }
-
-    (answer === correctAnswer.toLowerCase()) ? promptCorrect() : promptWrong()
     
+    (answer === correctAnswer || translations.includes(answer)) ? promptCorrect() : promptWrong()
     loadNextCard()
-
   }
 
   const loadNextCard = () => {
-    let nextCard = store.currentDeck.drawCard()
+    let nextCard = store.drawCard()
 
     if (nextCard !== undefined) {
       setUseCard(nextCard)
@@ -90,7 +83,7 @@ export default () => {
       <div>
         <Header />
         <h1>Training complete!</h1>
-        <h2>Your got {score} out of {store.currentDeck.currentSession.totalCount} correct</h2>
+        <h2>Your got {score} out of {store.currentSession.totalCount} correct</h2>
         <Footer/>
       </div>
     )
@@ -98,7 +91,7 @@ export default () => {
     return (
       <div>
         <Header />
-          <h1>Train yourself! (default: kanji)</h1>
+          <h1>Train yourself! (Mode: {state.mode})</h1>
           <div style={{
             maxWidth: "180px",
             height: "200px",
@@ -106,9 +99,9 @@ export default () => {
             border: "1px solid black"
           }}>
             <ul>
-              {(state.sessionSetting === 'kanji') ? <li>{useCard.hiragana}</li> : ''}
-              {(state.sessionSetting === 'hiragana') ? <li>{useCard.kanji}</li> : ''}
-              {(state.sessionSetting === 'translate') ? <li>{useCard.kanji}</li> : ''}
+              {(state.mode === 'kanji') ? <p>{useCard.translate[0]}</p> : ''}
+              {(state.mode === 'hiragana') ? <p>{useCard.kanji}</p> : ''}
+              {(state.mode === 'translation') ? <div><p>{useCard.kanji}</p><p>{useCard.hiragana}</p></div> : ''}
             </ul>
           </div>
           <form>

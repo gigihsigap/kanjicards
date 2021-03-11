@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Footer: React.FC<{}> = (props) => {
+const Header: React.FC<{}> = (props) => {
   return (
     <div>
       <div style={{display: 'flex', justifyContent: "center"}}>
@@ -15,7 +15,7 @@ const Footer: React.FC<{}> = (props) => {
             About
           </button>
         </Link>
-        <Link to="/training">
+        <Link to="/practice-settings">
           <button className="header-btn">
             Practice
           </button>
@@ -25,4 +25,4 @@ const Footer: React.FC<{}> = (props) => {
   );
 }
 
-export default Footer;
+export default Header;

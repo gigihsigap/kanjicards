@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-const store = require('../store.tsx');
+const {store} = require('../store.tsx');
 
 export default (props:any) => {
   const [kanji, setKanji] = useState('')
@@ -32,8 +32,9 @@ export default (props:any) => {
       translate:translate.split(',')
     }
     // Rapihin kode ini Pak
-    // console.log(store.currentDeck.cards[props.location.id])
-    store.currentDeck.cards[props.location.id].changeContent(obj)
+    // console.log(store.cards[props.location.id])
+    store.cards[props.location.id].changeContent(obj)
+    store.saveToLocalStorage()
   }
   
   return (

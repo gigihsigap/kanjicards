@@ -1,26 +1,4 @@
 import React from 'react';
-import CompleteCard from './CompleteCard';
-
-// let allCards = [
-//   {
-//     origin: '1',
-//     reading: 'ichi',
-//     translate: 'one',
-//   },
-//   {
-//     origin: '2',
-//     reading: 'ni',
-//     translate: 'two',
-//   }
-// ]
-
-interface CompleteCardProps {
-  data: {
-    kanji: string,
-    hiragana: string,
-    translate: string[],
-  }
-}
 
 const CardList: React.FC<{}> = (props) => {
   return (

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-const store = require('../store.tsx');
+const {store} = require('../store.tsx');
 
-export default () => {
+export default (props: any) => {
   const [kanji, setKanji] = useState('')
   const [hiragana, setHiragana] = useState('')
   const [translate, setTranslate] = useState('')
@@ -18,7 +18,8 @@ export default () => {
       hiragana,
       translate:translate.split(',')
     }
-    await store.currentDeck.addCard(obj)
+    store.addCard(obj)
+    props.history.push('/')
   }
   
   return (

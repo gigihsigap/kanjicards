@@ -4,23 +4,17 @@ import { Link } from 'react-router-dom';
 import CardList from '../components/CardList';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-// import { TodoList } from '../components/TodoList';
 
-const store = require('../store.tsx');
-  
-// const initialTodos: Array<Todo> = [
-//   {text: "Walk the dog", complete: true},
-//   {text: "Write app", complete: false},
-//   {text: "Study kanji", complete: false},
-// ]
+const {store} = require('../store.tsx');
 
 export default () => {
-  // const [todos, setTodos] = useState(initialTodos)
-  const [cards, setCards] = useState(store)
   const [refresh, setRefresh] = useState(true)
 
   useEffect(() => {
-    console.log('Use Effect jalan', cards)
+    // Bad code? Probably remove this because it means your code relies on both LS and store.tsx
+    // let kanjicards = store.getFromLocalStorage()
+    // if (kanjicards) setCards(kanjicards)
+    // console.log('From local storage: "kanjicards"', kanjicards)
   }, [refresh])
 
   // const toggleTodo: ToggleTodo = selectedTodo => {
@@ -37,29 +31,18 @@ export default () => {
   // }
 
   const deleteCard = async (id: number) => {
-    // const token = localStorage.owner_token
-    console.log('Jalankan function deleteCard')
-    store.currentDeck.removeCard(id)
+    store.removeCard(id)
     setRefresh(!refresh);
   }
-
-  // Add new card
-  // NOTE: bisa push ke array allCards, tapi harus refresh state?
-  // Next: edit file JSON??? tapi kalau dipikir, kalau ganti jadi class, gak bisa pakai JSON
-  // Ide fitur: ubah semua file menjadi bentuk JSON, dan terima file JSON
-
-  // Shuffle card
-  // Utility function to shuffle array
-  // Using the Fisher-Yates shuffle
-  // Thanks academia!
-
-
-  // Final boss: game shuffling-nya
   
   return (
     <div>
       <Header />
       <div className="main-section" >
+        <p>Your current deck is: {store.name}</p>
+        <p>Manage your decks here:</p> <Link to="/deck-list" ><button>Manage Deck</button></Link>
+        <Link to="/add-card" ><button>Add Card</button></Link>
+        <Link to="/export-deck" ><button>Export Deck</button></Link>
         <CardList/>
         {/* <TodoList todos={todos} toggleTodo={toggleTodo}/> */}
         <div style={{
@@ -69,7 +52,7 @@ export default () => {
           justifyContent: 'space-between',
           margin: '20px 100px',
           }}>
-          {store.currentDeck.cards.map((card:CardContent, id:number) => {
+          {store.cards.map((card:CardContent, id:number) => {
             return (
               <div key={id} style={{
                 flex: "0 24%",
@@ -84,7 +67,7 @@ export default () => {
                   <li>{card.translate.slice(0,2).join(', ')}</li>
                 </ul>
                 <Link to={{
-                  pathname:"/edit",
+                  pathname:"/edit-card",
                   cardData: card,
                   id: id
                 }}><button>Edit</button></Link>
@@ -94,8 +77,7 @@ export default () => {
           )}
         </div>
           
-          <Link to="/add" ><button>Add Card</button></Link>
-          <button onClick={() => store.currentDeck.shuffleAllCards()}>Shuffle</button>
+          
       </div>
       <Footer/>
     </div>
