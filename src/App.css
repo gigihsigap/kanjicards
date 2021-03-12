@@ -1,30 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
 .App {
   text-align: center;
+  background-color: #262626;
+  margin: 0 auto;
+  font-family: 'Work Sans', sans-serif;
+  color: #ffffff;
+  min-height: 100vh;
+  position: relative;
 }
+
+a {
+  text-decoration: none;
+}
+
+body {
+  margin: 0;
+}
+
+/* REMINDER
+- Delete .App because it's global
+- Modify delete button, 2 ways:
+  1. Delete button moved to Edit (pros: no need for modal)
+  2. Separate div (WORKS!)
+*/
+
+/* TO-DO
+- Make CSS layout for practice card
+- Make CSS layout for deck
+- Make CSS layout for forms (what shape? fill-in card? how to deal with translations? separate textform?)
+- Decide on practice selection (with cards, no need for form!)
+- Mekanisme menunjukkan jawaban salah VS jawaban benar? Karena kanji jadinya lebih baik kelihatan bedanya
+*/
+
+/* Table of contents
+––––––––––––––––––––––––––––––––––––––––––––––––––
+- Typography
+- Links
+- Buttons
+- Media Queries
+*/
+
+/* Typography
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+/*
+Good resource to find font styles that support Japanese letters: https://www.freejapanesefont.com/
+I might update with a feature that supports changing font styles.
+*/
+
+/*Noto Serif JP*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap');
+
+.kanji {
+  font-size: 3em; 
+  font-family: 'Noto Serif JP', serif;
+}
+
+.hiragana {
+  font-size: 1.5em;
+  font-family: 'Noto Serif JP', serif;
+}
+
+.translate {
+  font-size: 1em;
+}
+
+/* Grid
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .main-section {
-  min-height: 100vh;
+  min-height: 10vh;
 }
 
-.header-btn {
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* For devices larger than 400px */
+@media (min-width: 400px) {
+  .container {
+    width: 85%;
+    padding: 0; }
+}
+
+/* For devices larger than 550px */
+@media (min-width: 550px) {
+  .container {
+    width: 80%;
+  }
+}
+
+.footer {
+  display: flex;
+  color: #FCFCFC;
+  position: absolute;
+  bottom: 0.5em;
+  right: 1em;
+}
+
+
+/* Links
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+
+/* Buttons
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.button-links {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+@media (min-width: 750px) {
+  .button-links {
+    display: block;
+  }
+}
+
+.header button {
   margin: 0 2em;
   padding: 1em 2em;
   border: 1px solid black;
   text-decoration: none;
   cursor: pointer;
-} 
-
-section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 0 100px
 }
 
-article {
+
+
+
+
+
+
+.cardlist {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap; /* avoid overflowing, move next card to next row */
+}
+
+.smallcard {
+
+  min-width: 300px;
+  min-height: 8em;
+  padding: 0.2em;
+  margin: 0.5em;
+  
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+
+  border-radius: 8px;
+  transition: 0.25s;
+
+  box-shadow: 0 5px 9px 1px rgba(0, 0, 0, 0.2);
+  background-color: #EAEAEA;
+  color: #000000;   
+}
+
+.smallcard:hover {
+  box-shadow: 0 8px 16px 2px rgba(248, 248, 248,0.2);
+  background-color: #FCFCFC;
+  color: #111111;
+  
+}
+
+.xbutton {
+  cursor: pointer;
+  position: absolute;
+  font-size: 1.2em;
+  top: 0;
+  right: 0.4em;
+}
+
+.xbutton:hover {
+  color: #111111;
+}
+
+.plusbutton {
+  font-size: 5em;
+  font-weight: 800;
+  color: #262626;
+}
+
+.largecard {
+  min-width: 300px;
+  min-height: 8em;
+  padding: 0.2em;
+  margin: 0.5em auto;
+  width: 60%;
+  height: 50vh;
+  
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+
+  border-radius: 8px;
+  transition: 0.25s;
+
+  box-shadow: 0 5px 9px 1px rgba(0, 0, 0, 0.2);
+  background-color: #EAEAEA;
+  color: #000000;
+}
+
+/* Media Queries
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+/*
+Note: The best way to structure the use of media queries is to create the queries
+near the relevant code. For example, if you wanted to change the styles for buttons
+on small devices, paste the mobile query code up in the buttons section and style it
+there.
+*/
+
+/* Larger than mobile */
+@media (min-width: 400px) {}
+
+/* Larger than phablet */
+@media (min-width: 550px) {}
+
+/* Larger than tablet */
+@media (min-width: 750px) {}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {}
+
+/* Larger than Desktop HD */
+@media (min-width: 1200px) {}
+
+
+/* Larger than tablet */
+@media (min-width: 750px) {
+  .smallcard {
+    border: 1px solid red      
+  }
+}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {
+  .smallcard {
+    border: 1px solid black      
+  }
+}
+
+/* .smallcard {
   flex: 0 24%;
   max-width: 180px;
   height: 200px;
-  margin-bottom: 2%; /* (100-24*5)/2 */
-  border: 1px solid black
-}
+  margin-bottom: 2%;  (100-24*5)/2 
+  border: 1px solid black      
+} */

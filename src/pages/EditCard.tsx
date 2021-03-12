@@ -10,6 +10,7 @@ export default (props:any) => {
   const [translate, setTranslate] = useState('')
 
   useEffect(() => {
+    console.log('Use Effect jalan', props)
     // Harusnya kalau langsung ke edit, ganti halaman ke Add card
     let obj = {
       kanji: '',

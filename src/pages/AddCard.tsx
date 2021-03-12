@@ -25,16 +25,19 @@ export default (props: any) => {
   return (
     <div>
       <Header />
+      <div className="main-section">
         <h1>Add New Card</h1>
-        <form>
-          <label htmlFor="kanji">Kanji</label>
-          <input type="text" id="kanji" name="kanji" onChange={(e) => setKanji(e.target.value)}/>
-          <label htmlFor="hiragana">Hiragana</label>
-          <input type="text" id="hiragana" name="hiragana" onChange={(e) => setHiragana(e.target.value)}/>
-          <label htmlFor="translate">Translate</label>
-          <input type="text" id="translate" name="translate" onChange={(e) => setTranslate(e.target.value)}/>
-        </form>
+          <form>
+            <label htmlFor="kanji">Kanji</label>
+            <input type="text" id="kanji" name="kanji" onChange={(e) => setKanji(e.target.value)}/>
+            <label htmlFor="hiragana">Hiragana</label>
+            <input type="text" id="hiragana" name="hiragana" onChange={(e) => setHiragana(e.target.value)}/>
+            <label htmlFor="translate">Translate</label>
+            <input type="text" id="translate" name="translate" onChange={(e) => setTranslate(e.target.value)}/>
+          </form>
         <button type="submit" onClick={(e) => submitForm(e)}>Save Card</button>
+      </div>
+        
       <Footer/>
     </div>
   );

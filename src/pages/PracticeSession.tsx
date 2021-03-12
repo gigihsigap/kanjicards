@@ -12,9 +12,9 @@ export default (props: any) => {
     translate: [''],
   })
   const [state, setState] = useState({
-    outOfCards: false,
-    notificationMessage: '',
     mode: props.location.mode,
+    numOfCards: Number(props.location.numOfCards),
+    outOfCards: false,
   })
   const [score, setScore] = useState(0)
 
@@ -22,9 +22,8 @@ export default (props: any) => {
   useEffect(() => {
     console.log('Use Effect jalan', props)
 
-    // store.getFromLocalStorage()
-
     store.shuffleAllCards()
+    store.setNumOfCards(state.numOfCards)
     const firstcard = store.drawCard()
 
     
@@ -83,7 +82,7 @@ export default (props: any) => {
       <div>
         <Header />
         <h1>Training complete!</h1>
-        <h2>Your got {score} out of {store.currentSession.totalCount} correct</h2>
+        <h2>Your got {score} out of {state.numOfCards} correct</h2>
         <Footer/>
       </div>
     )
@@ -91,19 +90,17 @@ export default (props: any) => {
     return (
       <div>
         <Header />
-          <h1>Train yourself! (Mode: {state.mode})</h1>
-          <div style={{
-            maxWidth: "180px",
-            height: "200px",
-            marginBottom: "2%", /* (100-24*5)/2 */
-            border: "1px solid black"
-          }}>
-            <ul>
-              {(state.mode === 'kanji') ? <p>{useCard.translate[0]}</p> : ''}
-              {(state.mode === 'hiragana') ? <p>{useCard.kanji}</p> : ''}
-              {(state.mode === 'translation') ? <div><p>{useCard.kanji}</p><p>{useCard.hiragana}</p></div> : ''}
-            </ul>
+          
+          <div className="largecard">
+            <div>
+              {(state.mode === "kanji") ? <div className="translate">{useCard.translate[0]}</div> : ''}
+            
+              {(state.mode === "hiragana") ? <div className="kanji">{useCard.kanji}</div> : ''}
+            
+              {(state.mode === "translation") ? <><div className="kanji">{useCard.kanji}</div><div className="hiragana">{useCard.hiragana}</div></> : ''}
+            </div>
           </div>
+          <div>Type down the right {state.mode}!</div>
           <form>
             <input type="text" id="answer" name="answer" onChange={(e) => setAnswer(e.target.value)}/>
           </form>

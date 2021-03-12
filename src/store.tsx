@@ -101,6 +101,14 @@ class Deck {
     return this.currentSession.deck.pop()
   }
 
+  setNumOfCards(num: number) {
+    // for practice session with a set number of cards
+    if (num >= this.cards.length || num <= 1) { return }
+    for (let i = 1; i < num; i++) {
+      this.currentSession.deck.pop()
+    }
+  }
+
   changeName(name: string) {
     this.name = name
   }

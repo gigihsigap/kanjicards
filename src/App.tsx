@@ -20,7 +20,7 @@ import PreMadeDecks from './pages/PreMadeDecks';
 const App: React.FC = () => {
 
   return (
-    <div className="App" style={{margin: 0}}>
+    <div className="App">
       <Router>
         <Switch>
           <Route exact path="/" component={HomePage} />

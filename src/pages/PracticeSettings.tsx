@@ -6,6 +6,7 @@ export default (props: any) => {
   
   const [mode, setMode] = useState('translation')
   const [timer, setTimer] = useState('0')
+  const [numOfCards, setNumOfCards] = useState('0')
 
   // const startPractice = () => {
     // Can't really figure out how to deal with querySelectorAll in TS
@@ -31,6 +32,7 @@ export default (props: any) => {
   const startPractice = () => {
     props.history.push({ 
       pathname: '/practice-session',
+      numOfCards: numOfCards,
       mode: mode
      });
   }
@@ -54,6 +56,11 @@ export default (props: any) => {
         <div>
           Set timer
           <input type="number" onChange={(e) => setTimer(e.target.value)} />
+        </div>
+
+        <div>
+          Set number of cards
+          <input type="number" onChange={(e) => setNumOfCards(e.target.value)} />
         </div>
 
         

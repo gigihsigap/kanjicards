@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 
 const {store} = require('../store.tsx');
 
-export default () => {
+export default (props: any) => {
   const [decks, setDecks] = useState([store])
   // const [refresh, setRefresh] = useState(true)
 
@@ -22,10 +22,14 @@ export default () => {
     setDecks(kanjidecks)
   }, [])
 
-  const selectDeck = (i:number, deckData: Array<any>) => {
-    store.removeFromLocalDecks(i)
+  const selectDeck = (id:number, deckData: Array<any>) => {
+    store.removeFromLocalDecks(id)
     store.saveToLocalStorage()
     store.replaceDeck(deckData)
+    props.history.push({
+      pathname:"/",
+      id: id
+    })
   }
 
   const removeDeck = (i: number) => {
@@ -35,36 +39,20 @@ export default () => {
     let kanjidecks = store.getAllLocalDecks()
     setDecks(kanjidecks)
     // setRefresh(!refresh)
+    
   }
 
   return (
     <div>
       <Header />
       <div className="main-section" >
-        <div style={{
-          minHeight: '50vh',
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          margin: '20px 100px',
-          }}>
+        <div className="cardlist">
           {decks.map((deck:any, id:number) => {
             return (
-              <div key={id} style={{
-                flex: "0 24%",
-                maxWidth: "180px",
-                height: "200px",
-                marginBottom: "2%", /* (100-24*5)/2 */
-                border: "1px solid black"
-              }}> 
-                <ul>
-                  <li>{deck.name}</li>
-                  <li>Number of cards: {deck.cards.length}</li>
-                </ul>
-                <Link to={{
-                    pathname:"/",
-                    id: id
-                  }}><button onClick={() => selectDeck(Number(id), deck)}>Select Deck</button></Link>
+              <div key={id} className="smallcard"> 
+                  <div>{deck.name}</div>
+                  <div>Number of cards: {deck.cards.length}</div>
+                <button onClick={() => selectDeck(Number(id), deck)}>Select Deck</button>
                   <button onClick={() => removeDeck(Number(id))}>Remove Deck</button>
               </div>
             )}

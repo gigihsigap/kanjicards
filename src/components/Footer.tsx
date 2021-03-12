@@ -1,9 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer: React.FC<{}> = (props) => {
   return (
     <div>
-      Created in 2021.
+      <div className="footer">
+        <Link to="/about">
+          <button>?</button>
+        </Link>
+      </div>
     </div>
   );
 }

@@ -4,19 +4,14 @@ import { Link } from 'react-router-dom';
 const Header: React.FC<{}> = (props) => {
   return (
     <div>
-      <div style={{display: 'flex', justifyContent: "center"}}>
+      <div className="header">
         <Link to="/">
-          <button className="header-btn">
+          <button >
             Home
           </button>
         </Link>
-        <Link to="/about">
-          <button className="header-btn">
-            About
-          </button>
-        </Link>
         <Link to="/practice-settings">
-          <button className="header-btn">
+          <button>
             Practice
           </button>
         </Link>
