@@ -1,22 +1,11 @@
 import React, { useState, useEffect }  from 'react';
-import { Link } from 'react-router-dom';
-
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 
 const {store} = require('../store.tsx');
 
 export default (props: any) => {
   const [decks, setDecks] = useState([store])
-  // const [refresh, setRefresh] = useState(true)
 
   useEffect(() => {
-
-    // Previous code: can store new LS from zero, but still can't detect changes to the deck.
-    // let kanjidecks = store.getAllLocalDecks()
-    // kanjidecks ? setDecks(kanjidecks) : store.compileAllDecks()
-    ////////////
-
     store.compileAllDecks()
     const kanjidecks = store.getAllLocalDecks()
     setDecks(kanjidecks)
@@ -28,23 +17,49 @@ export default (props: any) => {
     store.replaceDeck(deckData)
     props.history.push({
       pathname:"/",
-      id: id
     })
   }
 
   const removeDeck = (i: number) => {
-    // Trigger modal
-    if (decks.length <= 1) { return } // Trigger modal nggak boleh remove
+    // Trigger modal?
+    if (decks.length <= 1) { return } // Trigger modal cannot remove
     store.removeFromLocalDecks(i)
     let kanjidecks = store.getAllLocalDecks()
     setDecks(kanjidecks)
-    // setRefresh(!refresh)
+  }
+
+  const routePrevent = (route: number) => {
+    // This routing is specific to DeckList page
+    // to prevent duplicates in local storage data
+    // by selecting default deck before switching route
+    store.removeFromLocalDecks(decks.length-1)
+    store.saveToLocalStorage()
+    store.replaceDeck(store)
+
+    if (route === 1) props.history.push("/")
+    if (route === 2) props.history.push("/practice-settings")
+    if (route === 3) props.history.push("/add-deck")
+    if (route === 4) props.history.push("/about")
     
   }
 
   return (
     <div>
-      <Header />
+      <div className="header">
+        <a className="logo" onClick={() => routePrevent(1)}>
+          Kanji Cards
+        </a>
+        <button className="btn" id="practice" onClick={() => routePrevent(2)}>
+          Practice
+        </button>
+      </div>
+      
+      <button onClick={() => routePrevent(3)} className="btn">
+        Create New Deck
+      </button>
+      <div style={{margin: "1em"}}>
+        Select a deck to study with:
+      </div>
       <div className="main-section" >
         <div className="cardlist">
           {decks.map((deck:any, id:number) => {
@@ -59,10 +74,12 @@ export default (props: any) => {
           )}
         </div>
           
-        <Link to="/add-deck" ><button>Create New Deck</button></Link>
+        
         
       </div>
-      <Footer/>
+      <div className="footer">
+        <button onClick={() => routePrevent(4)}>?</button>
+      </div>
     </div>
   );
 }

@@ -35,7 +35,7 @@ export default (props: any) => {
             <label htmlFor="translate">Translate</label>
             <input type="text" id="translate" name="translate" onChange={(e) => setTranslate(e.target.value)}/>
           </form>
-        <button type="submit" onClick={(e) => submitForm(e)}>Save Card</button>
+        <button type="submit" className="btn" onClick={(e) => submitForm(e)}>Save Card</button>
       </div>
         
       <Footer/>

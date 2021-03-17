@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
 
 const {store} = require('../store.tsx');
 
@@ -50,21 +49,26 @@ export default () => {
   
   return (
     <div>
-      <Header />
-        <h1>Add New Deck</h1>
-        <form>
-          <label htmlFor="deckname">Deck Name</label>
-          <input type="text" id="kanji" name="kanji" onChange={(e) => setDeckName(e.target.value)}/>
-        </form>
-        <button type="submit" onClick={(e) => submitForm(e)}>Create New Deck</button>
-        <h2>Or you can IMPORT a deck here</h2>
+      <Header/>
+        <h1>Create New Deck</h1>
+        <div>
+          <form>
+            <label htmlFor="deckname">Deck Name</label>
+            <input type="text" onChange={(e) => setDeckName(e.target.value)}/>
+        <button type="submit" className="btn" onClick={(e) => submitForm(e)}>New Deck</button>
+          </form>
 
-        <input type="file" id="selectFiles" onSubmit={() => console.log('Submit!')} /><br />
-        <button id="import" onClick={() => uploadJSON()}>Click to Import Cards</button>
-        <textarea id="result">
+        </div>
+        <div>
+
+        </div>
+
+        <input type="file" id="selectFiles" onSubmit={() => console.log('Submit!')} />
+        <button className="btn" id="import" onClick={() => uploadJSON()}>Click to Import Cards from JSON file</button>
+        <textarea id="result" style={{width:'300px', height:'300px', marginTop: '1em'}}>
           
         </textarea>
-      <Footer/>
+      <div className="footer"></div>
     </div>
   );
 }

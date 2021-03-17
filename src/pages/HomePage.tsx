@@ -4,23 +4,24 @@ import { Link } from 'react-router-dom';
 import CardList from '../components/CardList';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import AddCard from './AddCard';
 
 const {store} = require('../store.tsx');
 
 export default (props: any) => {
   const [refresh, setRefresh] = useState(true)
 
-  useEffect(() => {
-    // Bad code? Probably remove this because it means your code relies on both LS and store.tsx
-    // let kanjicards = store.getFromLocalStorage()
-    // if (kanjicards) setCards(kanjicards)
-    // console.log('From local storage: "kanjicards"', kanjicards)
-  }, [refresh])
+  useEffect(() => {}, [refresh])
 
   const addCard = () => {
     props.history.push({
       pathname:"/add-card"
+    })
+  }
+  
+  const editCard = (card: CardContent) => {
+    props.history.push({
+      pathname:"/edit-card",
+      cardData: card
     })
   }
 
@@ -29,23 +30,24 @@ export default (props: any) => {
     setRefresh(!refresh);
   }
 
-  const editCard = (card: CardContent) => {
-    props.history.push({
-      pathname:"/edit-card",
-      cardData: card
-    })
-  }
-  
   return (
     <div>
       <Header />
       <div className="main-section" >
-        <p>Your current deck is: {store.name}</p>
-        <p>Manage your decks here:</p>
+        Your current deck is: <span style={{fontSize: '1.2em', fontWeight: 500}}> {store.name}</span>
         <div className="button-links">
-          <Link to="/deck-list" ><button>Manage Deck</button></Link>
-          <Link to="/add-card" ><button>Add Card</button></Link>
-          <Link to="/export-deck" ><button>Export Deck</button></Link>
+          <Link to="/export-deck" >
+            <button className="btn" id="practice">Practice!</button>
+          </Link>
+          <Link to="/deck-list" >
+            <button className="btn">Manage Deck</button>
+          </Link>
+          <Link to="/add-card" >
+            <button className="btn">Add Card</button>
+          </Link>
+          <Link to="/export-deck" >
+            <button className="btn">Export Deck</button>
+          </Link>
         </div>
         <CardList/>
         <div className="cardlist">
@@ -65,8 +67,6 @@ export default (props: any) => {
             <div className="plusbutton">+</div>
           </div>
         </div>
-          
-          
       </div>
       <Footer/>
     </div>

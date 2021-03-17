@@ -1,20 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
 .App {
+  font-family: 'Work Sans', sans-serif;
   text-align: center;
   background-color: #262626;
-  margin: 0 auto;
-  font-family: 'Work Sans', sans-serif;
   color: #ffffff;
   min-height: 100vh;
+  
+  margin: 0 auto;
   position: relative;
 }
 
 a {
   text-decoration: none;
+  cursor: pointer;
+  width: auto;
+}
+
+h1 {
+  font-weight: 400;
+  margin-top: 0em;
+  margin-bottom: 0.3em;
 }
 
 body {
   margin: 0;
+}
+
+textarea {
+  outline: none;
+}
+
+button {
+  cursor: pointer;
 }
 
 /* REMINDER
@@ -79,14 +96,46 @@ I might update with a feature that supports changing font styles.
 
 .header {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  
+  min-height: 70px;
+  max-width: 900px;
+  padding-right: 3em;
+  padding-left: 3em;
+  padding-top: 20px;
+  margin: 0 auto;
 }
+
+.header button {
+  display: none;
+}
+
+/* For devices larger than 550px */
+@media (min-width: 550px) {
+  .header {
+    justify-content: space-between;
+  }
+
+  .header button {
+    display: block;
+  }
+}
+
+.footer {
+  display: flex;
+  color: #FCFCFC;
+  min-height: 70px;
+}
+
+
 
 /* For devices larger than 400px */
 @media (min-width: 400px) {
   .container {
     width: 85%;
-    padding: 0; }
+    padding: 0;
+  }
 }
 
 /* For devices larger than 550px */
@@ -96,13 +145,9 @@ I might update with a feature that supports changing font styles.
   }
 }
 
-.footer {
-  display: flex;
-  color: #FCFCFC;
-  position: absolute;
-  bottom: 0.5em;
-  right: 1em;
-}
+
+
+
 
 
 /* Links
@@ -112,30 +157,91 @@ I might update with a feature that supports changing font styles.
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
+.btn {
+  margin: 0.5em;
+  padding: 1em;
+  min-width: 120px;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  background-color: transparent;
+  color: #FCFCFC;
+  transition: 0.25s;
+}
+
+.btn:hover {
+  background-color: #313131;
+}
+
+.logo {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 2.5em;
+  color: #FCFCFC;
+}
+
+.logo:hover {
+  color: #FCFCFC;
+  text-shadow: 
+      4px 4px 0px #d5d5d5, 
+      7px 7px 0px rgba(0, 0, 0, 0.2);
+}
+
 .button-links {
+  margin-top: 1em;
   display: flex;
   flex-flow: column wrap;
 }
 
-@media (min-width: 750px) {
+@media (min-width: 550px) {
   .button-links {
     display: block;
   }
+
+  .button-links #practice {
+    display: none;
+  }
 }
 
-.header button {
-  margin: 0 2em;
-  padding: 1em 2em;
-  border: 1px solid black;
-  text-decoration: none;
+.footer button {
+  width: 50px;
+  height: 50px;
+  font-size: 1.5em;
+  border-radius: 10em;
+  background-color: #262626;
+  box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 1);
+  color: #bbb;
+  border: 2px solid #bbb;
+  
+  position: absolute;
+  bottom: 0.5em;
+  right: 10%;
+}
+
+.xbutton {
   cursor: pointer;
+  position: absolute;
+  font-size: 1.2em;
+  top: 0;
+  right: 0.4em;
+}
+
+.xbutton:hover {
+  color: #111111;
+}
+
+.plusbutton {
+  font-size: 5em;
+  font-weight: 700;
+  color: #262626;
+}
+
+#practice {
+  padding: 1.2em 0;
+  font-size: 1em;
 }
 
 
-
-
-
-
+/* Cards
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .cardlist {
   margin-top: 10px;
@@ -145,10 +251,10 @@ I might update with a feature that supports changing font styles.
 }
 
 .smallcard {
-
   min-width: 300px;
   min-height: 8em;
-  padding: 0.2em;
+  padding-top: 0.3em;
+  padding-bottom: 0.4em;
   margin: 0.5em;
   
   cursor: pointer;
@@ -170,34 +276,15 @@ I might update with a feature that supports changing font styles.
   box-shadow: 0 8px 16px 2px rgba(248, 248, 248,0.2);
   background-color: #FCFCFC;
   color: #111111;
-  
-}
-
-.xbutton {
-  cursor: pointer;
-  position: absolute;
-  font-size: 1.2em;
-  top: 0;
-  right: 0.4em;
-}
-
-.xbutton:hover {
-  color: #111111;
-}
-
-.plusbutton {
-  font-size: 5em;
-  font-weight: 800;
-  color: #262626;
 }
 
 .largecard {
   min-width: 300px;
-  min-height: 8em;
+  min-height: 6em;
   padding: 0.2em;
   margin: 0.5em auto;
   width: 60%;
-  height: 50vh;
+  height: 40vh;
   
   text-align: center;
   display: flex;
@@ -211,6 +298,14 @@ I might update with a feature that supports changing font styles.
   box-shadow: 0 5px 9px 1px rgba(0, 0, 0, 0.2);
   background-color: #EAEAEA;
   color: #000000;
+}
+
+.largecard input {
+  background-color: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-color: #5b5b5b;
 }
 
 /* Media Queries
@@ -241,14 +336,14 @@ there.
 /* Larger than tablet */
 @media (min-width: 750px) {
   .smallcard {
-    border: 1px solid red      
+    border: 0px solid red      
   }
 }
 
 /* Larger than desktop */
 @media (min-width: 1000px) {
   .smallcard {
-    border: 1px solid black      
+    border: 0px solid black      
   }
 }
 

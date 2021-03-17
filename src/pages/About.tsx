@@ -23,7 +23,6 @@ export default () => {
         <a>Repository Link</a>
         </div>
       </div>
-      <Footer/>
     </div>
   );
 }

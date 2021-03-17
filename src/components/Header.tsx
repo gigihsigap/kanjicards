@@ -6,13 +6,14 @@ const Header: React.FC<{}> = (props) => {
     <div>
       <div className="header">
         <Link to="/">
-          <button >
-            Home
-          </button>
+          <div className="logo">
+            Kanji Cards
+          </div>
         </Link>
+        
         <Link to="/practice-settings">
-          <button>
-            Practice
+          <button className="btn" id="practice">
+            Practice!
           </button>
         </Link>
       </div>

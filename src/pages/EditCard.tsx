@@ -42,15 +42,15 @@ export default (props:any) => {
     <div>
       <Header />
         <h1>Edit Card</h1>
-        <form>
-          <label htmlFor="kanji">Kanji</label>
-          <input type="text" id="kanji" name="kanji" value={kanji} onChange={(e) => setKanji(e.target.value)}/>
-          <label htmlFor="hiragana">Hiragana</label>
-          <input type="text" id="hiragana" name="hiragana" value={hiragana} onChange={(e) => setHiragana(e.target.value)}/>
-          <label htmlFor="translate">Translate</label>
-          <input type="text" id="translate" name="translate" value={translate} onChange={(e) => setTranslate(e.target.value)}/>
-        </form>
-        <button type="submit" onClick={(e) => submitForm(e)}>Save Card</button>
+        <div className="largecard">
+          <form style={{display: 'flex', flexFlow: 'column wrap'}}>
+            <input type="text" id="kanji" name="kanji" value={kanji} onChange={(e) => setKanji(e.target.value)}/>
+            <input type="text" id="hiragana" name="hiragana" value={hiragana} onChange={(e) => setHiragana(e.target.value)}/>
+            <input type="text" id="translate" name="translate" value={translate} onChange={(e) => setTranslate(e.target.value)}/>
+          </form>
+        </div>
+        
+        <button type="submit" className="btn" onClick={(e) => submitForm(e)}>Save Card</button>
       <Footer/>
     </div>
   );
