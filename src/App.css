@@ -44,27 +44,16 @@ input[type=text] {
   box-sizing: border-box;
 }
 
-/* REMINDER
-- Delete .App because it's global
-- Modify delete button, 2 ways:
-  1. Delete button moved to Edit (pros: no need for modal)
-  2. Separate div (WORKS!)
-*/
-
-/* TO-DO
-- Make CSS layout for practice card
-- Make CSS layout for deck
-- Make CSS layout for forms (what shape? fill-in card? how to deal with translations? separate textform?)
-- Decide on practice selection (with cards, no need for form!)
-- Mekanisme menunjukkan jawaban salah VS jawaban benar? Karena kanji jadinya lebih baik kelihatan bedanya
-*/
-
 /* Table of contents
 ––––––––––––––––––––––––––––––––––––––––––––––––––
 - Typography
 - Links
 - Buttons
 - Media Queries
+*/
+
+/* REMINDER
+- Modify .App because it's global
 */
 
 /* Typography
