@@ -10,13 +10,12 @@ export default (props:any) => {
   const [translate, setTranslate] = useState('')
 
   useEffect(() => {
-    console.log('Use Effect jalan', props)
-    // Harusnya kalau langsung ke edit, ganti halaman ke Add card
     let obj = {
       kanji: '',
       hiragana: '',
       translate: ['']
     }
+
     let cardData = props.location.cardData || obj
     setKanji(cardData.kanji)
     setHiragana(cardData.hiragana)
@@ -25,32 +24,37 @@ export default (props:any) => {
 
   const submitForm = async (e: any) => {
     e.preventDefault()
-    // const token = localStorage.owner_token
-    console.log(kanji, hiragana, translate)
+
     const obj:CardContent = {
       kanji,
       hiragana,
       translate:translate.split(',')
     }
-    // Rapihin kode ini Pak
-    // console.log(store.cards[props.location.id])
+
+    // Validate empty card
+    if (kanji === '') { return }
+    if (hiragana === '') { return }
+    if (translate.length === 0) { return }
+    
     store.cards[props.location.id].changeContent(obj)
     store.saveToLocalStorage()
+    props.history.push({
+      pathname:"/"
+    })
   }
   
   return (
     <div>
       <Header />
         <h1>Edit Card</h1>
-        <div className="largecard">
-          <form style={{display: 'flex', flexFlow: 'column wrap'}}>
-            <input type="text" id="kanji" name="kanji" value={kanji} onChange={(e) => setKanji(e.target.value)}/>
-            <input type="text" id="hiragana" name="hiragana" value={hiragana} onChange={(e) => setHiragana(e.target.value)}/>
-            <input type="text" id="translate" name="translate" value={translate} onChange={(e) => setTranslate(e.target.value)}/>
-          </form>
-        </div>
-        
-        <button type="submit" className="btn" onClick={(e) => submitForm(e)}>Save Card</button>
+        <form onSubmit={(e) => submitForm(e)}>
+          <div className="largecard">
+            <input type="text" style={{fontSize: '3em'}} placeholder="kanji" name="kanji" value={kanji} onChange={(e) => setKanji(e.target.value)}/>
+            <input type="text" style={{fontSize: '1.5em'}} placeholder="hiragana" name="hiragana" value={hiragana} onChange={(e) => setHiragana(e.target.value)}/>
+            <input type="text" style={{fontSize: '1em'}} placeholder="translation" name="translate" value={translate} onChange={(e) => setTranslate(e.target.value)}/>
+          </div>
+          <button type="submit" className="btn">Save Card</button>
+        </form>
       <Footer/>
     </div>
   );

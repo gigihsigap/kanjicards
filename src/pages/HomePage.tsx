@@ -18,10 +18,11 @@ export default (props: any) => {
     })
   }
   
-  const editCard = (card: CardContent) => {
+  const editCard = (id: number, card: CardContent) => {
     props.history.push({
       pathname:"/edit-card",
-      cardData: card
+      cardData: card,
+      id: id
     })
   }
 
@@ -54,7 +55,7 @@ export default (props: any) => {
           {store.cards.map((card:CardContent, id:number) => {
             return (
               <div key={id} className="smallcard" >
-                <div onClick={() => editCard(card)}>
+                <div onClick={() => editCard(id, card)}>
                   <div className="kanji">{card.kanji}</div>
                   <div className="hiragana">({card.hiragana})</div>
                   <div className="translate">{card.translate.slice(0,2).join(', ')}</div>

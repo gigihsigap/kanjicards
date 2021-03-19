@@ -17,12 +17,12 @@
   {
     "kanji": "百万円",
     "hiragana": "ひゃくまんえん",
-    "translate": ["one million yen", "1 million yen"]
+    "translate": ["1000000 yen", "1 million yen", "one million yen"]
   },
   {
     "kanji": "千万円",
     "hiragana": "せんまんえん",
-    "translate": ["ten million yen", "10 million yen"]
+    "translate": ["10000000 yen", "10 million yen", "ten million yen"]
   },
   {
     "kanji": "百一",
@@ -38,55 +38,5 @@
     "kanji": "百九十九",
     "hiragana": "ひゃくきゅうじゅうきゅう",
     "translate": ["199"]
-  },
-  {
-    "kanji": "",
-    "hiragana": "",
-    "translate": [""]
-  },
-  {
-    "kanji": "",
-    "hiragana": "",
-    "translate": [""]
-  },
-  {
-    "kanji": "",
-    "hiragana": "",
-    "translate": [""]
-  },
-  {
-    "kanji": "",
-    "hiragana": "",
-    "translate": [""]
-  },
-  {
-    "kanji": "",
-    "hiragana": "",
-    "translate": [""]
-  },
-  {
-    "kanji": "",
-    "hiragana": "",
-    "translate": [""]
-  },
-  {
-    "kanji": "",
-    "hiragana": "",
-    "translate": [""]
-  },
-  {
-    "kanji": "",
-    "hiragana": "",
-    "translate": [""]
-  },
-  {
-    "kanji": "",
-    "hiragana": "",
-    "translate": [""]
-  },
-  {
-    "kanji": "",
-    "hiragana": "",
-    "translate": [""]
   }
 ]

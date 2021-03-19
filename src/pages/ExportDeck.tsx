@@ -10,7 +10,7 @@ export default (props:any) => {
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(store.cards));
     var dlAnchorElem:any = document.getElementById('downloadAnchorElem');
     dlAnchorElem.setAttribute("href",dataStr);
-    // Perlu handle ketika ada spasi di nama
+    // TODO: Allow space on file name?
     dlAnchorElem.setAttribute("download", `${store.name}.json`);
   }
   

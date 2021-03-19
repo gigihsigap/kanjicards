@@ -34,6 +34,16 @@ button {
   cursor: pointer;
 }
 
+input[type=text] {
+  font-size: 1.3em;
+  padding: 6px 10px;
+  background-color: #fff;
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+
 /* REMINDER
 - Delete .App because it's global
 - Modify delete button, 2 ways:
@@ -79,6 +89,17 @@ I might update with a feature that supports changing font styles.
 
 .translate {
   font-size: 1em;
+}
+
+.score {
+  min-width: 50px;
+  min-height: 50px;
+  display: flex;
+  flex-flow: column;
+}
+
+.score span {
+  font-size: 1.3em;
 }
 
 /* Grid
@@ -128,8 +149,6 @@ I might update with a feature that supports changing font styles.
   min-height: 70px;
 }
 
-
-
 /* For devices larger than 400px */
 @media (min-width: 400px) {
   .container {
@@ -145,14 +164,21 @@ I might update with a feature that supports changing font styles.
   }
 }
 
+.progress {
+  background: linear-gradient(to right, #F9EC31 var(--scroll), transparent 0);
+  background-repeat: no-repeat;
+  position: fixed;
+  width: 100%;
+  height: 4px;
+  z-index: 1;
+}
 
-
-
-
-
-/* Links
+/* Forms
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-
+.practiceinput {
+  text-align: center;
+  width: 80%;
+}
 
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -202,8 +228,8 @@ I might update with a feature that supports changing font styles.
 }
 
 .footer button {
-  width: 50px;
-  height: 50px;
+  min-width: 50px;
+  min-height: 50px;
   font-size: 1.5em;
   border-radius: 10em;
   background-color: #262626;
@@ -214,6 +240,11 @@ I might update with a feature that supports changing font styles.
   position: absolute;
   bottom: 0.5em;
   right: 10%;
+}
+
+.footer button:hover {
+  background-color: #313131;
+  box-shadow: 0 4px 8px 0px rgb(44, 44, 44);
 }
 
 .xbutton {
@@ -237,6 +268,20 @@ I might update with a feature that supports changing font styles.
 #practice {
   padding: 1.2em 0;
   font-size: 1em;
+}
+
+.cancelpractice {
+  min-width: 50px;
+  min-height: 50px;
+  font-size: 1.5em;
+  border-radius: 10em;
+  background-color: #262626;
+  color: #bbb;
+  border: 2px solid #bbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 
@@ -279,12 +324,13 @@ I might update with a feature that supports changing font styles.
 }
 
 .largecard {
+  width: 50%;
+  height: 40vh;
   min-width: 300px;
-  min-height: 6em;
+  min-height: 150px;
+  max-height: 300px;
   padding: 0.2em;
   margin: 0.5em auto;
-  width: 60%;
-  height: 40vh;
   
   text-align: center;
   display: flex;
@@ -301,11 +347,47 @@ I might update with a feature that supports changing font styles.
 }
 
 .largecard input {
+
   background-color: transparent;
   border-top: none;
   border-left: none;
   border-right: none;
   border-color: #5b5b5b;
+
+  align-self: center;
+  text-align: center;
+  width: 65%;
+  min-width: 250px;
+  margin: 0.2em 0;
+}
+
+.settingoption {
+  min-width: 300px;
+  min-height: 2em;
+  padding: 0.5em;
+  margin: 0.5em;
+
+  font-size: 1.5em;
+  
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+
+  border-radius: 8px;
+  transition: 0.25s;
+
+  box-shadow: 0 5px 9px 1px rgba(0, 0, 0, 0.2);
+  background-color: #EAEAEA;
+  color: #000000;
+}
+
+.settingoption:hover {
+  box-shadow: 0 8px 16px 2px rgba(248, 248, 248,0.2);
+  background-color: #FCFCFC;
+  color: #111111;
 }
 
 /* Media Queries
@@ -346,11 +428,3 @@ there.
     border: 0px solid black      
   }
 }
-
-/* .smallcard {
-  flex: 0 24%;
-  max-width: 180px;
-  height: 200px;
-  margin-bottom: 2%;  (100-24*5)/2 
-  border: 1px solid black      
-} */

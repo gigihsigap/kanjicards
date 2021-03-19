@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import ProgressBar from '../components/ProgressBar'
 
 const {store} = require('../store.tsx');
 
@@ -16,18 +15,14 @@ export default (props: any) => {
     numOfCards: Number(props.location.numOfCards),
     outOfCards: false,
   })
+  const [progress, setProgress] = useState(0)
   const [score, setScore] = useState(0)
 
 
   useEffect(() => {
-    console.log('Use Effect jalan', props)
-
     store.shuffleAllCards()
     store.setNumOfCards(state.numOfCards)
     const firstcard = store.drawCard()
-
-    
-    console.log('First card', firstcard)
     setUseCard(firstcard)
   }, [])
 
@@ -62,6 +57,17 @@ export default (props: any) => {
     }
     
     (answer === correctAnswer || translations.includes(answer)) ? promptCorrect() : promptWrong()
+    
+    
+    const meter = (state.numOfCards-store.currentSession.deck.length)*100/state.numOfCards
+    setProgress(meter)
+
+    // Empties input form
+    Array.from(document.querySelectorAll("input")).forEach(
+      input => (input.value = "")
+    );
+    setAnswer('')
+
     loadNextCard()
   }
 
@@ -77,20 +83,29 @@ export default (props: any) => {
     }
   }
 
-  if (state.outOfCards) {
-    return (
-      <div>
-        <Header />
-        <h1>Training complete!</h1>
-        <h2>Your got {score} out of {state.numOfCards} correct</h2>
-        <Footer/>
+  const cancelPractice = () => {
+    props.history.push('/')
+  }
+
+  return (
+    <div>
+      <div className="header">
+        <div className="score">
+          <div>Timer:</div>
+          <span>--</span>
+        </div>
+        <ProgressBar bgcolor="#6a1b9a" completed={progress}/>
+        <div className="cancelpractice" onClick={cancelPractice}>
+          X
+        </div>
       </div>
-    )
-  } else {
-    return (
-      <div>
-        <Header />
-          
+      {(state.outOfCards)
+      ? (<div>
+          <h1>Practice complete!</h1>
+          <h2>Your got {score} out of {state.numOfCards} cards correct!</h2>
+        </div>)
+      : (<div>
+        <div style={{height:'20px'}}></div>
           <div className="largecard">
             <div>
               {(state.mode === "kanji") ? <div className="translate">{useCard.translate[0]}</div> : ''}
@@ -100,13 +115,17 @@ export default (props: any) => {
               {(state.mode === "translation") ? <><div className="kanji">{useCard.kanji}</div><div className="hiragana">{useCard.hiragana}</div></> : ''}
             </div>
           </div>
-          <div>Type down the right {state.mode}!</div>
-          <form>
-            <input type="text" id="answer" name="answer" onChange={(e) => setAnswer(e.target.value)}/>
+          <div style={{margin:'1em 0'}}>What is the correct {state.mode} for this word?</div>
+          <form style={{display:'flex', alignItems: 'center', flexFlow:'column'}} onSubmit={(e) => checkAnswer(e)}>
+            <input
+              type="text"
+              id="answer"
+              name="answer" 
+              placeholder="Type your answer here!"
+              onChange={(e) => setAnswer(e.target.value)}/> 
+            <button className="btn" type="submit">Submit</button>
           </form>
-          <button type="submit" onClick={(e) => checkAnswer(e)}>Check Answer</button>
-        <Footer/>
-      </div>
-    );
-  }
+        </div>)}
+    </div>
+  );
 }

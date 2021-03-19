@@ -21,8 +21,8 @@ export default (props: any) => {
   }
 
   const removeDeck = (i: number) => {
-    // Trigger modal?
-    if (decks.length <= 1) { return } // Trigger modal cannot remove
+    // TODO: Trigger modal?
+    if (decks.length <= 1) { return } // TODO: Trigger modal cannot remove
     store.removeFromLocalDecks(i)
     let kanjidecks = store.getAllLocalDecks()
     setDecks(kanjidecks)
@@ -50,7 +50,7 @@ export default (props: any) => {
           Kanji Cards
         </a>
         <button className="btn" id="practice" onClick={() => routePrevent(2)}>
-          Practice
+          Practice!
         </button>
       </div>
       
@@ -64,11 +64,13 @@ export default (props: any) => {
         <div className="cardlist">
           {decks.map((deck:any, id:number) => {
             return (
-              <div key={id} className="smallcard"> 
-                  <div>{deck.name}</div>
-                  <div>Number of cards: {deck.cards.length}</div>
-                <button onClick={() => selectDeck(Number(id), deck)}>Select Deck</button>
-                  <button onClick={() => removeDeck(Number(id))}>Remove Deck</button>
+              <div>
+                <div key={id} className="smallcard"> 
+                    <div>{deck.name}</div>
+                    <div>Number of cards: {deck.cards.length}</div>
+                </div>
+                <button className="btn" onClick={() => selectDeck(Number(id), deck)}>Select Deck</button>
+                <button className="btn" onClick={() => removeDeck(Number(id))}>Remove Deck</button>
               </div>
             )}
           )}
