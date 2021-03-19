@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/kanjicards/static/css/main.d9178a7e.chunk.css",
-    "main.js": "/kanjicards/static/js/main.802f57eb.chunk.js",
-    "main.js.map": "/kanjicards/static/js/main.802f57eb.chunk.js.map",
+    "main.js": "/kanjicards/static/js/main.eeb62c27.chunk.js",
+    "main.js.map": "/kanjicards/static/js/main.eeb62c27.chunk.js.map",
     "runtime-main.js": "/kanjicards/static/js/runtime-main.02fd3a5a.js",
     "runtime-main.js.map": "/kanjicards/static/js/runtime-main.02fd3a5a.js.map",
     "static/js/2.af8170a1.chunk.js": "/kanjicards/static/js/2.af8170a1.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.02fd3a5a.js",
     "static/js/2.af8170a1.chunk.js",
     "static/css/main.d9178a7e.chunk.css",
-    "static/js/main.802f57eb.chunk.js"
+    "static/js/main.eeb62c27.chunk.js"
   ]
 }
