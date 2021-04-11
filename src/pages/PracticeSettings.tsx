@@ -9,12 +9,14 @@ export default (props: any) => {
   // const [timer, setTimer] = useState('0')
   const [numOfCards, setNumOfCards] = useState(store.cards.length)
 
-  const startPractice = (mode: string) => {
+  const startPractice = (mode: string, promptType: string, answerType: string) => {
     // TODO: Show settings error message
     if (numOfCards > store.cards.length || numOfCards <= 0) { return }
     props.history.push({ 
       pathname: '/practice-session',
       numOfCards: numOfCards,
+      promptType: promptType,
+      answerType: answerType,
       mode: mode
      });
   }
@@ -25,14 +27,14 @@ export default (props: any) => {
         <h1 style={{marginTop: '0.2em'}}>Choose a practice mode:</h1>
         <div style={{display: 'flex', maxWidth: '500px', margin: '0 auto', flexFlow: 'column'}}>
           
-          <div className="settingoption" onClick={() => startPractice('translation')}>
-            Kanji + Hiragana 🡲 Translation
+          <div className="settingoption" onClick={() => startPractice('translation', 'kanji', 'translate')}>
+            Kanji + Hiragana → Translation
           </div>
-          <div className="settingoption" onClick={() => startPractice('hiragana')}>
-            Kanji 🡲 Hiragana
+          <div className="settingoption" onClick={() => startPractice('hiragana', 'kanji', 'hiragana')}>
+            Kanji → Hiragana
           </div>
-          <div className="settingoption" onClick={() => startPractice('kanji')}>
-            Translation 🡲 Kanji
+          <div className="settingoption" onClick={() => startPractice('kanji', 'translate', 'kanji')}>
+            Translation → Kanji
           </div>
         </div>
 

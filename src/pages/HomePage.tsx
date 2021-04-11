@@ -37,7 +37,7 @@ export default (props: any) => {
       <div className="main-section" >
         Your current deck is: <span style={{fontSize: '1.2em', fontWeight: 500}}> {store.name}</span>
         <div className="button-links">
-          <Link to="/export-deck" >
+          <Link to="/practice-settings" >
             <button className="btn" id="practice">Practice!</button>
           </Link>
           <Link to="/deck-list" >
