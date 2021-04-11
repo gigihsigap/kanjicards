@@ -49,12 +49,34 @@ export default (props:any) => {
         <h1>Edit Card</h1>
         <form onSubmit={(e) => submitForm(e)}>
           <div className="largecard">
-            <input type="text" style={{fontSize: '3em'}} placeholder="kanji" name="kanji" value={kanji} onChange={(e) => setKanji(e.target.value)}/>
-            <input type="text" style={{fontSize: '1.5em'}} placeholder="hiragana" name="hiragana" value={hiragana} onChange={(e) => setHiragana(e.target.value)}/>
-            <input type="text" style={{fontSize: '1em'}} placeholder="translation" name="translate" value={translate} onChange={(e) => setTranslate(e.target.value)}/>
+            <input
+              className="kanji"
+              type="text"
+              style={{fontSize: '3em'}}
+              placeholder="kanji"
+              name="kanji"
+              value={kanji}
+              onChange={(e) => setKanji(e.target.value)}/>
+            <input
+              className="hiragana"
+              type="text"
+              style={{fontSize: '1.5em'}}
+              placeholder="hiragana"
+              name="hiragana"
+              value={hiragana}
+              onChange={(e) => setHiragana(e.target.value)}/>
+            <input
+              className="translate"
+              type="text"
+              style={{fontSize: '1em'}}
+              placeholder="translation"
+              name="translate"
+              value={translate}
+              onChange={(e) => setTranslate(e.target.value)}/>
           </div>
           <button type="submit" className="btn">Save Card</button>
         </form>
+        <button className="btn">Delete Card</button>
       <Footer/>
     </div>
   );

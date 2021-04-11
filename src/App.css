@@ -80,6 +80,14 @@ I might update with a feature that supports changing font styles.
   font-size: 1em;
 }
 
+.bigfont {
+  font-size: 3em;
+}
+
+.medfont {
+  font-size: 1.5em;
+}
+
 .score {
   min-width: 50px;
   min-height: 50px;
@@ -316,9 +324,8 @@ I might update with a feature that supports changing font styles.
   width: 50%;
   height: 40vh;
   min-width: 300px;
-  min-height: 150px;
+  min-height: 200px;
   max-height: 300px;
-  padding: 0.2em;
   margin: 0.5em auto;
   
   text-align: center;
@@ -348,6 +355,49 @@ I might update with a feature that supports changing font styles.
   width: 65%;
   min-width: 250px;
   margin: 0.2em 0;
+}
+
+.resultcard {
+  min-width: 300px;
+  min-height: 8em;
+  padding-top: 0.3em;
+  padding-bottom: 0.4em;
+  margin: 0.5em;
+  
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+
+  border-radius: 8px;
+  transition: 0.25s;
+
+  box-shadow: 0 5px 9px 1px rgba(0, 0, 0, 0.2);
+  color: #000000; 
+}
+
+#true {
+  background-color: #70ca46;
+  color: #130000; 
+}
+
+#false {
+  background-color: #FF6860;
+  color: #412a2a;
+}
+
+.resultcard .lefttext {
+  font-size: 0.8em;
+  font-weight: 600;
+  text-align: left;
+  margin: 0 0 0.05em 1em;
+}
+
+.resultcard .righttext {
+  font-size: 1.2em;
+  text-align: right;
+  margin: 0 1em 0.05em 0;
 }
 
 .settingoption {

@@ -3,6 +3,9 @@ import ProgressBar from '../components/ProgressBar'
 
 const {store} = require('../store.tsx');
 
+let correctAnswers:any = [];
+let wrongAnswers:any = [];
+
 export default (props: any) => {
   const [answer, setAnswer] = useState('')
   const [useCard, setUseCard] = useState({
@@ -12,29 +15,42 @@ export default (props: any) => {
   })
   const [state, setState] = useState({
     mode: props.location.mode,
+    promptType: props.location.promptType,
+    answerType: props.location.answerType,
     numOfCards: Number(props.location.numOfCards),
     outOfCards: false,
+    showResult: true,
   })
   const [progress, setProgress] = useState(0)
   const [score, setScore] = useState(0)
 
-
   useEffect(() => {
+    correctAnswers = []
+    wrongAnswers = []
     store.shuffleAllCards()
     store.setNumOfCards(state.numOfCards)
     const firstcard = store.drawCard()
     setUseCard(firstcard)
   }, [])
 
-  const promptCorrect = () => {
+  const ifCorrect = () => {
     setScore(score + 1)
-    console.log("You're correct!")
+    correctAnswers.push(useCard)
   }
 
-  const promptWrong = () => {
-    console.log("You're wrong!")
+  const ifWrong = () => {
+    const prompt:"kanji"|"hiragana"|"translate" = state.promptType
+    const check:"kanji"|"hiragana"|"translate" = state.answerType
+    let obj = {
+      check: false,
+      prompt: useCard[prompt],
+      input: answer,
+      correctAnswer: useCard[check],
+    }
+    if (prompt === "translate") obj.prompt = useCard.translate.slice(0,2).join(', ')
+    if (check === "translate") obj.correctAnswer = useCard.translate.slice(0,2).join(', ')
+    wrongAnswers.push(obj)
   }
-
 
   const checkAnswer = (e: any) => {
     e.preventDefault()
@@ -56,8 +72,7 @@ export default (props: any) => {
       default: break
     }
     
-    (answer === correctAnswer || translations.includes(answer)) ? promptCorrect() : promptWrong()
-    
+    (answer === correctAnswer || translations.includes(answer)) ? ifCorrect() : ifWrong()
     
     const meter = (state.numOfCards-store.currentSession.deck.length)*100/state.numOfCards
     setProgress(meter)
@@ -100,22 +115,74 @@ export default (props: any) => {
         </div>
       </div>
       {(state.outOfCards)
-      ? (<div>
+      ? (<>
           <h1>Practice complete!</h1>
           <h2>Your got {score} out of {state.numOfCards} cards correct!</h2>
-        </div>)
+          <div>
+            {(state.showResult)
+            ? <button className="btn" onClick={() => (setState({...state, showResult: false}))}>Show Wrong Answers</button>
+            : <button className="btn" onClick={() => (setState({...state, showResult: true}))}>Show Correct Answers</button>
+            }
+          </div>
+          <div>
+            {(state.showResult)
+            ? <h4>You answered correct on these cards:</h4>
+            : <h4>... And here's where you can improve. Try again!</h4>
+            }
+          </div>
+          <div>
+            {(state.showResult)
+            ? (<>
+              <div className="cardlist">
+                {correctAnswers.map((card:any, id:number) => {
+                  return (
+                    <div key={id} className="resultcard" id="true">
+                      <div className="kanji">{card.kanji}</div>
+                      <div className="hiragana">({card.hiragana})</div>
+                      <div className="translate">{card.translate.slice(0,2).join(', ')}</div>
+                    </div>
+                  )}
+                )}
+              </div>
+            </>)
+            : (<>
+              <div className="cardlist">
+              {wrongAnswers.map((card:any, id:number) => {
+                return (
+                  <div key={id} className="resultcard" id="false">
+                    <div style={{fontSize: '2.3em', marginBottom: '0.05em'}}>{card.prompt}</div>
+                    <div className="lefttext">Your answer: </div>
+                    <div className="righttext">{card.input}</div>
+                    <div className="lefttext">Correct answer: </div>
+                    <div className="righttext">{card.correctAnswer}</div>
+                  </div>
+                )}
+              )}
+              </div>
+            </>)}
+          </div>
+        </>)
       : (<div>
         <div style={{height:'20px'}}></div>
           <div className="largecard">
             <div>
-              {(state.mode === "kanji") ? <div className="translate">{useCard.translate[0]}</div> : ''}
+              {(state.mode === "kanji") ? <>
+                <div className="translate" style={{fontSize: '2.5em'}}>{useCard.translate[0]}</div>
+              </> : ''}
             
-              {(state.mode === "hiragana") ? <div className="kanji">{useCard.kanji}</div> : ''}
+              {(state.mode === "hiragana") ? <>
+                <div className="kanji">{useCard.kanji}</div>
+              </> : ''}
             
-              {(state.mode === "translation") ? <><div className="kanji">{useCard.kanji}</div><div className="hiragana">{useCard.hiragana}</div></> : ''}
+              {(state.mode === "translation") ? <>
+                <div className="kanji">{useCard.kanji}</div>
+                <div className="hiragana">{useCard.hiragana}</div>
+              </> : ''}
             </div>
           </div>
-          <div style={{margin:'1em 0'}}>What is the correct {state.mode} for this word?</div>
+          <div style={{margin:'1em 0'}}>
+            What is the correct {state.mode} for this word?
+          </div>
           <form style={{display:'flex', alignItems: 'center', flexFlow:'column'}} onSubmit={(e) => checkAnswer(e)}>
             <input
               type="text"
