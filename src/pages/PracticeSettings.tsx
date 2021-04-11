@@ -42,7 +42,7 @@ export default (props: any) => {
 
         <div >
           Set number of cards: 
-          <input style={{maxWidth: '2em', margin: '0 1em'}} type="number" onChange={(e) => setNumOfCards(e.target.value)} value={numOfCards} />
+          <input style={{maxWidth: '2em', margin: '0 1em'}} type="number" min={1} onChange={(e) => setNumOfCards(e.target.value)} value={numOfCards} />
         </div>
               
       <Footer/>

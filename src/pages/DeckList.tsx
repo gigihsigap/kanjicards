@@ -55,7 +55,7 @@ export default (props: any) => {
       </div>
       
       <button onClick={() => routePrevent(3)} className="btn">
-        Create New Deck
+        Import Deck / Create New Deck
       </button>
       <div style={{margin: "1em"}}>
         Select a deck to study with:
@@ -66,7 +66,7 @@ export default (props: any) => {
             return (
               <div>
                 <div key={id} className="smallcard"> 
-                    <div>{deck.name}</div>
+                    <div style={{fontSize: '1.5em', fontWeight: 600, marginBottom: '0.2em'}}>{deck.name}</div>
                     <div>Number of cards: {deck.cards.length}</div>
                 </div>
                 <button className="btn" onClick={() => selectDeck(Number(id), deck)}>Select Deck</button>

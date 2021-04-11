@@ -47,7 +47,7 @@ export default (props: any) => {
       input: answer,
       correctAnswer: useCard[check],
     }
-    if (prompt === "translate") obj.prompt = useCard.translate.slice(0,2).join(', ')
+    if (prompt === "translate") obj.prompt = useCard.translate[0]
     if (check === "translate") obj.correctAnswer = useCard.translate.slice(0,2).join(', ')
     wrongAnswers.push(obj)
   }
@@ -117,7 +117,7 @@ export default (props: any) => {
       {(state.outOfCards)
       ? (<>
           <h1>Practice complete!</h1>
-          <h2>Your got {score} out of {state.numOfCards} cards correct!</h2>
+          <div style={{fontSize: '1.5em', margin: '0.5em 0'}}>You got {score} out of {state.numOfCards} cards correct!</div>
           <div>
             {(state.showResult)
             ? <button className="btn" onClick={() => (setState({...state, showResult: false}))}>Show Wrong Answers</button>
@@ -126,8 +126,8 @@ export default (props: any) => {
           </div>
           <div>
             {(state.showResult)
-            ? <h4>You answered correct on these cards:</h4>
-            : <h4>... And here's where you can improve. Try again!</h4>
+            ? <div style={{fontSize: '1.2em', margin: '0.5em 0'}}>You answered correct on these cards:</div>
+            : <div style={{fontSize: '1.2em', margin: '0.5em 0'}}>... And here's where you can improve. Try again!</div>
             }
           </div>
           <div>

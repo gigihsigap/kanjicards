@@ -10,6 +10,11 @@ const {store} = require('../store.tsx');
 export default (props: any) => {
   const [refresh, setRefresh] = useState(true)
 
+  useEffect(() => {
+    store.getFromLocalStorage()
+    setRefresh(!refresh);
+  }, [])
+
   useEffect(() => {}, [refresh])
 
   const addCard = () => {
@@ -35,7 +40,7 @@ export default (props: any) => {
     <div>
       <Header />
       <div className="main-section" >
-        Your current deck is: <span style={{fontSize: '1.2em', fontWeight: 500}}> {store.name}</span>
+        Your current deck is: <span style={{fontSize: '1.2em', fontWeight: 550}}> {store.name}</span>
         <div className="button-links">
           <Link to="/practice-settings" >
             <button className="btn" id="practice">Practice!</button>
