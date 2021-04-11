@@ -17,6 +17,7 @@ a {
 }
 
 h1 {
+  font-family: 'Noto Serif JP', serif;
   font-weight: 400;
   margin-top: 0em;
   margin-bottom: 0.3em;
@@ -78,6 +79,11 @@ I might update with a feature that supports changing font styles.
 
 .translate {
   font-size: 1em;
+}
+
+.about {
+  font-size: 1.1em;
+  font-family: 'Noto Serif JP', serif;
 }
 
 .bigfont {
@@ -245,15 +251,19 @@ I might update with a feature that supports changing font styles.
 }
 
 .xbutton {
+  font-family: 'Work Sans', sans-serif;
   cursor: pointer;
   position: absolute;
-  font-size: 1.2em;
+  font-size: 1.5em;
+  font-weight: 700;
   top: 0;
   right: 0.4em;
 }
 
 .xbutton:hover {
-  color: #111111;
+  color: #313131;
+  text-shadow: 
+      -2px 2px 0px rgba(0, 0, 0, 0.5);
 }
 
 .plusbutton {
@@ -378,7 +388,7 @@ I might update with a feature that supports changing font styles.
 }
 
 #true {
-  background-color: #70ca46;
+  background-color: #6bbd63;
   color: #130000; 
 }
 
