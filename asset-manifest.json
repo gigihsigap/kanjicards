@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/kanjicards/static/css/main.d9178a7e.chunk.css",
-    "main.js": "/kanjicards/static/js/main.eeb62c27.chunk.js",
-    "main.js.map": "/kanjicards/static/js/main.eeb62c27.chunk.js.map",
+    "main.css": "/kanjicards/static/css/main.5872121f.chunk.css",
+    "main.js": "/kanjicards/static/js/main.8c183042.chunk.js",
+    "main.js.map": "/kanjicards/static/js/main.8c183042.chunk.js.map",
     "runtime-main.js": "/kanjicards/static/js/runtime-main.02fd3a5a.js",
     "runtime-main.js.map": "/kanjicards/static/js/runtime-main.02fd3a5a.js.map",
-    "static/js/2.af8170a1.chunk.js": "/kanjicards/static/js/2.af8170a1.chunk.js",
-    "static/js/2.af8170a1.chunk.js.map": "/kanjicards/static/js/2.af8170a1.chunk.js.map",
+    "static/js/2.9aa3f326.chunk.js": "/kanjicards/static/js/2.9aa3f326.chunk.js",
+    "static/js/2.9aa3f326.chunk.js.map": "/kanjicards/static/js/2.9aa3f326.chunk.js.map",
     "index.html": "/kanjicards/index.html",
-    "static/css/main.d9178a7e.chunk.css.map": "/kanjicards/static/css/main.d9178a7e.chunk.css.map",
-    "static/js/2.af8170a1.chunk.js.LICENSE.txt": "/kanjicards/static/js/2.af8170a1.chunk.js.LICENSE.txt"
+    "static/css/main.5872121f.chunk.css.map": "/kanjicards/static/css/main.5872121f.chunk.css.map",
+    "static/js/2.9aa3f326.chunk.js.LICENSE.txt": "/kanjicards/static/js/2.9aa3f326.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.02fd3a5a.js",
-    "static/js/2.af8170a1.chunk.js",
-    "static/css/main.d9178a7e.chunk.css",
-    "static/js/main.eeb62c27.chunk.js"
+    "static/js/2.9aa3f326.chunk.js",
+    "static/css/main.5872121f.chunk.css",
+    "static/js/main.8c183042.chunk.js"
   ]
 }
