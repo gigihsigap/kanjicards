@@ -55,7 +55,7 @@ export default (props: any) => {
       </div>
       
       <button onClick={() => routePrevent(3)} className="btn">
-        Import Deck / Create New Deck
+        Import Deck / Add New Deck
       </button>
       <div style={{margin: "1em"}}>
         Select a deck to study with:

@@ -1,7 +1,6 @@
 import React, { useState, useEffect }  from 'react';
 import { Link } from 'react-router-dom';
 
-import CardList from '../components/CardList';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -9,10 +8,11 @@ const {store} = require('../store.tsx');
 
 export default (props: any) => {
   const [refresh, setRefresh] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     store.getFromLocalStorage()
-    setRefresh(!refresh);
+    setIsLoading(false);
   }, [])
 
   useEffect(() => {}, [refresh])
@@ -55,24 +55,26 @@ export default (props: any) => {
             <button className="btn">Export Deck</button>
           </Link>
         </div>
-        <CardList/>
-        <div className="cardlist">
-          {store.cards.map((card:CardContent, id:number) => {
-            return (
-              <div key={id} className="smallcard" >
-                <div onClick={() => editCard(id, card)}>
-                  <div className="kanji">{card.kanji}</div>
-                  <div className="hiragana">({card.hiragana})</div>
-                  <div className="translate">{card.translate.slice(0,2).join(', ')}</div>
+        {(isLoading)
+        ? ""
+        : <div className="cardlist">
+            {store.cards.map((card:CardContent, id:number) => {
+              return (
+                <div key={id} className="smallcard" >
+                  <div onClick={() => editCard(id, card)}>
+                    <div className="kanji">{card.kanji}</div>
+                    <div className="hiragana">({card.hiragana})</div>
+                    <div className="translate">{card.translate.slice(0,2).join(', ')}</div>
+                  </div>
+                  <div className="xbutton" onClick={() => deleteCard(id)}>x</div>
                 </div>
-                <div className="xbutton" onClick={() => deleteCard(id)}>x</div>
-              </div>
+              )}
             )}
-          )}
-          <div className="smallcard" onClick={() => addCard()}>
-            <div className="plusbutton">+</div>
+            <div className="smallcard" onClick={() => addCard()}>
+              <div className="plusbutton">+</div>
+            </div>
           </div>
-        </div>
+        }
       </div>
       <Footer/>
     </div>

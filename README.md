@@ -1,6 +1,6 @@
-# KanjiCards
+# Kanji Cards
 
-Kanjicards is an app for memorizing Kanji words. Try it [HERE!](http://gigihsigap.github.io/kanjicards)
+Kanji Cards is an app for memorizing kanji words. Try it [HERE!](http://gigihsigap.github.io/kanjicards)
 
 ## About
 

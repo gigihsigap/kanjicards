@@ -8,7 +8,7 @@ export default () => {
       <div className="container about">
         <h1>How to Use</h1>
         <div className="main-section" style={{maxWidth: '680px',textAlign:"justify", margin: '0 auto', padding: '1em 0.5em'}}>
-        Kanji Cards is an app for memorizing kanji words.
+        Kanji Cards is an app for memorizing kanji words made by Gap.
         Test your kanji knowledge with those cards using Practice Mode! (Hint: it's on the top right!)
         <br></br>
         <br></br>
