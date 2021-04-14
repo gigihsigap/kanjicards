@@ -33,6 +33,7 @@ export default (props: any) => {
 
   const deleteCard = async (id: number) => {
     store.removeCard(id)
+    store.saveToLocalStorage()
     setRefresh(!refresh);
   }
 
