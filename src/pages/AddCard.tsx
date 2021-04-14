@@ -24,6 +24,7 @@ export default (props: any) => {
     if (translate.length === 0) { return }
 
     store.addCard(obj)
+    store.saveToLocalStorage()
     props.history.push('/')
   }
   

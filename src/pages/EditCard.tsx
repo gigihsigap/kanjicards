@@ -42,6 +42,14 @@ export default (props:any) => {
       pathname:"/"
     })
   }
+
+  const deleteCard = async (id: number) => {
+    store.removeCard(id)
+    store.saveToLocalStorage()
+    props.history.push({
+      pathname:"/"
+    })
+  }
   
   return (
     <div>
@@ -76,7 +84,7 @@ export default (props:any) => {
           </div>
           <button type="submit" className="btn">Save Card</button>
         </form>
-        <button className="btn">Delete Card</button>
+        <button className="btn" onClick={() => deleteCard(props.location.id)}>Delete Card</button>
       <Footer/>
     </div>
   );
