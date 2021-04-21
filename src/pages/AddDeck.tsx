@@ -14,6 +14,7 @@ export default (props: any) => {
       name: deckName,
       cards: []
     }
+    store.compileAllDecks()
     store.replaceDeck(obj)
     store.saveToLocalStorage()
     props.history.push("/")
@@ -41,6 +42,7 @@ export default (props: any) => {
         name: deckName,
         cards: result || []
       }
+      store.compileAllDecks()
       store.replaceDeck(obj)
       store.saveToLocalStorage()
       props.history.push("/")

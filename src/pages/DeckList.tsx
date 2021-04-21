@@ -13,8 +13,8 @@ export default (props: any) => {
 
   const selectDeck = (id:number, deckData: Array<any>) => {
     store.removeFromLocalDecks(id)
-    store.saveToLocalStorage()
     store.replaceDeck(deckData)
+    store.saveToLocalStorage() 
     props.history.push({
       pathname:"/",
     })
